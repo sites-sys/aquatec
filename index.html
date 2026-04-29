@@ -1,1 +1,233 @@
-dssd
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUATEC - Smart Reef Pro</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CONFIGURAÇÕES GERAIS E BACKGROUND */
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            color: #ffffff;
+            background: url('https://images.unsplash.com/photo-1582967788606-a171c1080cb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed; 
+            background-size: cover;
+        }
+
+        .overlay {
+            background: rgba(4, 15, 30, 0.75);
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* CABEÇALHO E LOGO */
+        header { display: flex; justify-content: center; padding: 20px; }
+        .logo { max-width: 200px; height: auto; }
+
+        /* PAINEL ESTILO VIDRO (GLASSMORPHISM) */
+        .glass-panel { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 20px; 
+            padding: 40px; 
+            margin: 0 auto 60px auto; 
+            max-width: 1000px; 
+            text-align: center; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        h1 { font-size: 3.5em; margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .destaque { color: #00d2ff; }
+        .subtitulo { font-size: 1.2em; font-weight: 300; margin-bottom: 30px; color: #e0e0e0; }
+
+        .foto-principal {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            margin: 20px 0;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+        }
+
+        .cta-button { 
+            display: inline-block; 
+            background: linear-gradient(90deg, #00d2ff 0%, #0076ff 100%); 
+            color: white; 
+            padding: 18px 40px; 
+            font-size: 1.2em; 
+            font-weight: 600; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            margin-top: 30px; 
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+            transition: transform 0.2s;
+        }
+        .cta-button:hover { transform: scale(1.05); }
+
+        /* =========================================
+           NOVA SEÇÃO: BLOCOS DE INFORMAÇÃO (100% LARGURA)
+           ========================================= */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .info-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+        .info-box i { font-size: 3.5em; margin-bottom: 25px; color: #8ec5d6; }
+        .info-box h3 { font-size: 1.3em; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;}
+        .info-box p { font-size: 1em; line-height: 1.6; margin: 0; font-weight: 300;}
+
+        /* Cores extraídas da imagem */
+        .bg-col-1 { background-color: #4e6f87; }
+        .bg-col-2 { background-color: #34526f; }
+        .bg-col-3 { background-color: #373c44; }
+        .bg-col-4 { background-color: #1d232c; }
+
+        /* =========================================
+           NOVO RODAPÉ (FOOTER)
+           ========================================= */
+        .site-footer {
+            background-color: #232a32;
+            color: #d1d5db;
+            text-align: center;
+            padding: 40px 20px 0 20px;
+        }
+        .site-footer h2 { color: white; font-weight: 600; margin-bottom: 40px; font-size: 1.8em; }
+
+        .footer-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icons i { font-size: 2.2em; margin: 0 10px; cursor: pointer; }
+        .fa-whatsapp { color: #25D366; }
+        .fa-youtube { color: #FF0000; }
+        .fa-instagram { color: #E1306C; }
+        .fa-facebook { color: #1877F2; }
+
+        .payment-badges span {
+            background: white; 
+            color: #232a32; 
+            padding: 8px 15px; 
+            border-radius: 4px; 
+            font-weight: 800; 
+            font-size: 0.9em; 
+            margin: 0 5px; 
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-size: 0.9em;
+        }
+        .footer-links a { color: #d1d5db; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+
+        .footer-copyright {
+            background-color: #161b22;
+            padding: 25px 20px;
+            font-size: 0.85em;
+            margin: 0 -20px; /* Estica além do padding do footer */
+        }
+        .footer-copyright p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+    
+    <header>
+        <img src="https://via.placeholder.com/200x80/000000/00d2ff?text=LOGO+AQUATEC" alt="Logo AQUATEC" class="logo">
+    </header>
+
+    <div class="glass-panel">
+        <h1>Smart Reef <span class="destaque">Pro</span></h1>
+        <p class="subtitulo">A evolução no controle de parâmetros do seu aquário. Precisão milimétrica, controle na palma da mão.</p>
+        
+        <img src="REMOVER_LOGO.png" alt="AQUATEC Smart Reef Pro" class="foto-principal">
+        <br>
+        <a href="#" class="cta-button">Garanta o Seu Agora</a>
+    </div>
+
+    <div class="info-section">
+        <div class="info-box bg-col-1">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h3>Monitoramento</h3>
+            <p>Temperatura<br>PH, ORP, EC, Salinidade,<br>SG, Oxigenação e<br>Saturação</p>
+        </div>
+        <div class="info-box bg-col-2">
+            <i class="fa-solid fa-gear"></i>
+            <h3>Automação</h3>
+            <p>Regras de automação<br>Controle de Dosadoras<br>Controle de Alimentador<br>Controle de Tomadas</p>
+        </div>
+        <div class="info-box bg-col-3">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <h3>Alertas</h3>
+            <p>40 tipos de alertas<br>por Telegram, email,<br>sonoros e visuais</p>
+        </div>
+        <div class="info-box bg-col-4">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Histórico</h3>
+            <p>Relatórios<br>&<br>Gráficos</p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <h2>Tecnologia para cuidar do seu aquário!</h2>
+
+        <div class="footer-flex">
+            <div class="social-icons">
+                <i class="fa-brands fa-whatsapp"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook"></i>
+            </div>
+            
+            <div class="payment-badges">
+                <span>Pix</span>
+                <span>Mercado Pago</span>
+                <span>PagSeguro</span>
+                <span>PayPal</span>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="#">política de privacidade</a>
+            <a href="#">termo de compra e venda</a>
+            <a href="#">arrependimento ou desistência</a>
+            <a href="#">trocas e devoluções</a>
+            <a href="#">assistência técnica</a>
+            <a href="#">termos de uso</a>
+        </div>
+
+        <div class="footer-copyright">
+            <p><strong>© Copyright 2026 - AQUATEC - Todos os direitos reservados</strong></p>
+            <p style="font-size: 0.8em; color: #888;">AQUATEC Comércio e Serviços LTDA | CPNJ 13.406.457/0001-42 | Rua Desembargador Lima Castro 101 - Casa 50 - Fonseca - Niterói - RJ - 24120-350 | aquateccontroller@gmail.com</p>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
